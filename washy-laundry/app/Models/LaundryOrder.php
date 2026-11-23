@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaundryOrder extends Model
 {
-    protected $fillable = ['user_id', 'kode', 'total_harga', 'tanggal_pesanan', 'estimasi_selesai',
-        'status_pesanan', 'jadwal_jemput', 'alamat_jemput', 'catatan', 'kurir'];
+    protected $fillable = [
+        'user_id', 'kode', 'total_harga', 'tanggal_pesanan', 'estimasi_selesai',
+        'status_pesanan', 'jadwal_jemput', 'alamat_jemput', 'catatan', 'kurir',
+    ];
 
     protected $casts = [
         'tanggal_pesanan' => 'date',
