@@ -8,38 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('laundry_orders', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('invoice_number')->unique();
-
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
-
-            $table->foreignId('service_id')
-                ->constrained()
-                ->restrictOnDelete();
-
-            $table->decimal('weight', 8, 2);
-            $table->decimal('price_per_kg', 12, 2);
-            $table->decimal('total_price', 12, 2);
-
-            $table->string('status')->default('menunggu');
-            $table->string('payment_status')->default('belum_bayar');
-
-            $table->text('notes')->nullable();
-
-            $table->timestamp('received_at')->nullable();
-            $table->timestamp('completed_at')->nullable();
-            $table->timestamp('picked_up_at')->nullable();
-
-            $table->timestamps();
+        Schema::create('laundry_orders', function (Blueprint $t) {
+            $t->id();
+            $t->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $t->string('kode')->unique();
+            $t->unsignedInteger('total_harga')->default(0);
+            $t->date('tanggal_pesanan');
+            $t->dateTime('estimasi_selesai')->nullable();
+            $t->string('status_pesanan')->default('Diterima');
+            $t->dateTime('jadwal_jemput')->nullable();
+            $t->text('alamat_jemput')->nullable();
+            $t->text('catatan')->nullable();
+            $t->string('kurir')->nullable();
+            $t->timestamps();
         });
     }
-
     public function down(): void
-    {
-        Schema::dropIfExists('laundry_orders');
-    }
+    {Schema::dropIfExists('laundry_orders');}
 };

@@ -8,19 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->decimal('price_per_kg', 12, 2);
-            $table->integer('estimated_days')->default(3);
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
+        Schema::create('services', function (Blueprint $t) {
+            $t->id();
+            $t->string('nama_layanan');
+            $t->text('deskripsi')->nullable();
+            $t->unsignedInteger('harga_perkg');
+            $t->unsignedTinyInteger('durasi_hari')->default(2);
+            $t->boolean('status_layanan')->default(true);
+            $t->timestamps();
         });
     }
-
     public function down(): void
-    {
-        Schema::dropIfExists('services');
-    }
+    {Schema::dropIfExists('services');}
 };

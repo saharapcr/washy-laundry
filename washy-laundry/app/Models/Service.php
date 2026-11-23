@@ -3,28 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
-    protected $fillable = [
-        'name',
-        'description',
-        'price_per_kg',
-        'estimated_days',
-        'is_active',
-    ];
-
-    protected function casts(): array
-    {
-        return [
-            'price_per_kg' => 'decimal:2',
-            'is_active' => 'boolean',
-        ];
-    }
-
-    public function orders(): HasMany
-    {
-        return $this->hasMany(LaundryOrder::class);
-    }
+    protected $fillable = ['nama_layanan', 'deskripsi', 'harga_perkg', 'durasi_hari', 'status_layanan'];
 }
